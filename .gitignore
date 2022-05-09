@@ -1,8 +1,4 @@
+.env
 yarn-error.log
-yarn.lock
-
 node_modules
 .next
-
-web
-attendance_list.sql
