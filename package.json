@@ -1,0 +1,19 @@
+{
+  "name": "draft",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/webhook": "^6.1.0",
+    "js-yaml": "^4.1.0",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "socket.io": "^4.5.0",
+    "socket.io-client": "^4.5.0",
+    "webpack": "^5.72.1"
+  },
+  "scripts": {
+    "start": "node src/app.js"
+  }
+}
