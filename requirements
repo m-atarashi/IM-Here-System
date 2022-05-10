@@ -1,7 +1,0 @@
-@slack/webhook
-js-yaml
-next
-react
-react-dom
-socket.io
-socket.io-client
