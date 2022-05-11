@@ -20,9 +20,9 @@ export default function Attendance(props) {
       .on('updateMemberLocations', membersLocation => setmMembersLocation(membersLocation)) // get current membersLocation status
       .on('sendConfig', config => { // get config and set lab name, members, locations, portraits
         setLab(config.lab)
-        setMembers(config.members)
+        setMembers(Object.keys(config.members))
         setLocations(config.locations.map(e => Object.keys(e)[0]))
-        setPortraits(config.portraits)
+        setPortraits(config.members)
       })
     setSocket(socket)
     return () => socket.close() // close this socket when component cleanuped
@@ -52,8 +52,7 @@ export default function Attendance(props) {
               {locations.map(location => {
                 return (
                   location === membersLocation[member] ?  // display member's icon at the current location, otherwise an empty space which emits a 'onMoved' event when touched or clicked
-                    <td><img src={`../../assets/img/${portraits[member]}`}/></td> :
-                    // <td><img className='member-avatar' src='https://ca.slack-edge.com/T036R1A1E-U036PT9AT-c927529411ab-512'/></td> :
+                    <td><img className='member-avatar' src={portraits[member]}/></td> :
                     <td><button className='attendance-table-button' type='button' onClick={() => {socket.emit('memberMoved', member, location)}}></button></td>
                 )
               })}

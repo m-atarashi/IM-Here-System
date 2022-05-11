@@ -9,11 +9,12 @@ const WorkingTimeManager = require('./scripts/WorkingTimeManager')
 
 
 const config = require('js-yaml').load(require('fs').readFileSync('assets/config.yml'))
-const memberLocations = {}
-config.members.forEach(member => memberLocations[member] = 'HOME')
+const members = Object.keys(config.members)
 
+const memberLocations = {}
+members.forEach(member => memberLocations[member] = 'HOME')
 const workingTimeManagers = {}
-config.members.forEach(member => workingTimeManagers[member] = new WorkingTimeManager())
+members.forEach(member => workingTimeManagers[member] = new WorkingTimeManager())
 
 const webhook = new IncomingWebhook(config.slackWebhookURL)
 
@@ -28,13 +29,11 @@ nextApp.prepare().then(
       // send data to a new connected client
       socket.emit('updateMemberLocations', memberLocations)
       socket.emit('sendConfig', config)
-
       socket
-        // update user's location
         .on('memberMoved', (member, location) => {
           workingTimeManagers[member].update(location, memberLocations[member])
-          sendSlackNotification(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], config.locations.map(e => e[memberLocations[member]]).filter(e => e)[0], workingTimeManagers[member].workingMinute)
-          
+          //sendSlackNotification(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], config.locations.map(e => e[memberLocations[member]]).filter(e => e)[0], workingTimeManagers[member].workingMinute)
+          // update user's location
           memberLocations[member] = location
           io.emit('updateMemberLocations', memberLocations)
         })
