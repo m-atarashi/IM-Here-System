@@ -16,9 +16,9 @@ class WorkingTimeManager {
       this.workingMinute = 0
       this.attendanceMinute = this.getCurrentMinute()
     }
-    if (currentLocation === 'OUT') this.workingMinute +=  this.getCurrentMinute() - this.attendanceMinute
-    if (prevLocation === 'OUT') this.attendanceMinute = this.getCurrentMinute()
-    if (currentLocation === 'HOME') this.workingMinute += this.getCurrentMinute() - this.attendanceMinute
+    if (currentLocation === 'HOME') {
+      this.workingMinute += this.getCurrentMinute() - this.attendanceMinute
+    }
   }
 }
 
