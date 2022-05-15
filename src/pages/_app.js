@@ -1,5 +1,6 @@
-import '../../assets/css/normalize.css'
+import '../assets/css/global.css'
+import '../assets/css/normalize.css'
 
 export default function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
-  }
+  return <Component {...pageProps} />
+}
