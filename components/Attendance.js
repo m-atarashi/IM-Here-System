@@ -8,6 +8,7 @@ import styles from '../css/attendance.module.css'
 export default function Attendance(props) {
   const [socket, setSocket] = useState()
   const [membersLocation, setmMembersLocation] = useState([])
+  const [membersInClass, setMembersInClass] = useState({})
   const [lab, setLab] = useState()
   const [members, setMembers] = useState([])
   const [locations, setLocations] = useState([])
@@ -17,6 +18,7 @@ export default function Attendance(props) {
     const socket = io()
     socket
       .on('updateMemberLocations', membersLocation => setmMembersLocation(membersLocation)) // get current membersLocation status
+      .on('updateMembersInClass', membersInClass => setMembersInClass(membersInClass))
       .on('sendConfig', config => { // get config and set lab name, members, locations, portraits
         setLab(config.lab)
         setMembers(Object.keys(config.members))
@@ -61,10 +63,10 @@ export default function Attendance(props) {
                       <td className={styles.image_cell}>
                         <img className={styles.member_avatar} src={portraits[member]}/>
                       </td> :
-                      location === 'CLASS' ?
+                    location === 'CLASS' ?
                       <td className={styles.button_cell}>
-                        <input id={'class_toggle_' + member} className={styles.toggle_button} type='checkbox' onClick={() => {socket.emit('classTurnedOn', member)}}/>
-                        <label for={'class_toggle_' + member} className={styles.toggle_label}></label>
+                        <input id={'class_toggle_' + member} className={styles.toggle_button} checked={membersInClass[member]} type='checkbox'/>
+                        <label for={'class_toggle_' + member} className={styles.toggle_label} onClick={() => {socket.emit('classTurned', member)}}></label>
                       </td> :
                       <td className={styles.button_cell}>
                         <button className={styles.attendance_table_button} type='button' onClick={() => {socket.emit('memberMoved', member, location)}}></button>
@@ -79,3 +81,4 @@ export default function Attendance(props) {
     </>
   )
 }
+// 
