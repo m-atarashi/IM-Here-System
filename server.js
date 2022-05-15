@@ -39,11 +39,14 @@ nextApp.prepare().then(
           // update a member's location
           memberLocations[member] = location
           io.emit('updateMemberLocations', memberLocations)
+
+          // reset CLASS toggle if you go home
+          if (location === 'HOME') membersInClass[member] = false
+          io.emit('updateMembersInClass', membersInClass)
         })
         .on('classTurned', (member, location) => {
           // update a member is in class or not
           membersInClass[member] = !membersInClass[member]
-
           notifyInClassTurned(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], membersInClass[member])
           io.emit('updateMembersInClass', membersInClass)
         })
