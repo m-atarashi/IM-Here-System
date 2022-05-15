@@ -61,6 +61,11 @@ export default function Attendance(props) {
                       <td className={styles.image_cell}>
                         <img className={styles.member_avatar} src={portraits[member]}/>
                       </td> :
+                      location === 'CLASS' ?
+                      <td className={styles.button_cell}>
+                        <input id={'class_toggle_' + member} className={styles.toggle_button} type='checkbox' onClick={() => {socket.emit('classTurnedOn', member)}}/>
+                        <label for={'class_toggle_' + member} className={styles.toggle_label}></label>
+                      </td> :
                       <td className={styles.button_cell}>
                         <button className={styles.attendance_table_button} type='button' onClick={() => {socket.emit('memberMoved', member, location)}}></button>
                       </td>
