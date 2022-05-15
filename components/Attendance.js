@@ -42,7 +42,7 @@ export default function Attendance(props) {
       <div className={styles.attendance_table_container}>
         <table className={styles.attendance_table}>
           <thead>
-          {/*────────── draw a headr row like MEMBER, HOME, OUT, FUN, ... ──────────*/}
+          {/*────────── draw a headr row like MEM., HOME, FUN, ... ──────────*/}
             <tr>
               <th>MEM.</th>
               {locations.map(location => <th className={styles.location}><span>{location}</span></th>)}
