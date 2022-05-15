@@ -3,7 +3,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
-// import styles from '../assets/css/attendance.css'
+// import styles from '../css/attendance.module.css'
 
 export default function Attendance(props) {
   const [socket, setSocket] = useState()
@@ -70,8 +70,8 @@ export default function Attendance(props) {
             )
           })}
         </table>
+        {/* <style jsx>{styles}</style> */}
       </div>
-      {/* <style jsx>{styles}</style>  */}
     </>
   )
 }
