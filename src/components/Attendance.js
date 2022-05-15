@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import styles from '../../assets/css/attendance.css'
 
-
 export default function Attendance(props) {
   const [socket, setSocket] = useState()
   const [membersLocation, setmMembersLocation] = useState([])
@@ -72,7 +71,6 @@ export default function Attendance(props) {
           })}
         </table>
       </div>
-      <gura />
       <style jsx>{styles}</style> 
     </>
   )
