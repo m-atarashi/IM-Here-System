@@ -8,7 +8,7 @@ const sendSlackNotification = require('./scripts/slackNotification')
 const WorkingTimeManager = require('./scripts/WorkingTimeManager')
 
 
-const config = require('js-yaml').load(require('fs').readFileSync('assets/config.yml'))
+const config = require('js-yaml').load(require('fs').readFileSync('public/config.yml'))
 const members = Object.keys(config.members)
 
 const memberLocations = {}

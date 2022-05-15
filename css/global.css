@@ -1,0 +1,27 @@
+/* sans-serif */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+/* serif */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap');
+
+:root {
+  --primary-color: #f5f5f5;
+  --secondary-color: #dee2e6;
+  --font-familly-sans-serif: Comfortaa, 'Zen Maru Gothic', sans-serif;
+  --font-familly-sans: 'Josefin Slab', 'Kaisei Opti', serif;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  font-family: var(--font-familly-sans);
+  font-size: 16px;
+}
+
+body {
+  background: #f7f7f7;
+}
