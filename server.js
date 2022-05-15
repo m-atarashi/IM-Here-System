@@ -4,7 +4,7 @@ const http = require('http')
 const next = require('next')
 const Server = require('socket.io')
 const { IncomingWebhook } = require('@slack/webhook');
-const sendSlackNotification = require('./scripts/slackNotification')
+const { notifyLocation, notifyInClassTurned } = require('./scripts/slackNotification')
 const WorkingTimeManager = require('./scripts/WorkingTimeManager')
 
 
@@ -35,13 +35,16 @@ nextApp.prepare().then(
       socket
         .on('memberMoved', (member, location) => {
           workingTimeManagers[member].update(location, memberLocations[member])
-          //sendSlackNotification(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], config.locations.map(e => e[memberLocations[member]]).filter(e => e)[0], workingTimeManagers[member].workingMinute)
-          // update user's location
+          notifyLocation(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], config.locations.map(e => e[memberLocations[member]]).filter(e => e)[0], workingTimeManagers[member].workingMinute)
+          // update a member's location
           memberLocations[member] = location
           io.emit('updateMemberLocations', memberLocations)
         })
-        .on('classTurned', member => {
+        .on('classTurned', (member, location) => {
+          // update a member is in class or not
           membersInClass[member] = !membersInClass[member]
+
+          notifyInClassTurned(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], membersInClass[member])
           io.emit('updateMembersInClass', membersInClass)
         })
     })

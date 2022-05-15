@@ -66,7 +66,7 @@ export default function Attendance(props) {
                     location === 'CLASS' ?
                       <td className={styles.button_cell}>
                         <input id={'class_toggle_' + member} className={styles.toggle_button} checked={membersInClass[member]} type='checkbox'/>
-                        <label for={'class_toggle_' + member} className={styles.toggle_label} onClick={() => {socket.emit('classTurned', member)}}></label>
+                        <label for={'class_toggle_' + member} className={styles.toggle_label} onClick={() => {socket.emit('classTurned', member, membersLocation[member])}}></label>
                       </td> :
                       <td className={styles.button_cell}>
                         <button className={styles.attendance_table_button} type='button' onClick={() => {socket.emit('memberMoved', member, location)}}></button>
