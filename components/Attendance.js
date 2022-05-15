@@ -3,7 +3,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
-// import styles from '../css/attendance.module.css'
+import styles from '../css/attendance.module.css'
 
 export default function Attendance(props) {
   const [socket, setSocket] = useState()
@@ -33,36 +33,36 @@ export default function Attendance(props) {
         <title>Attendance System - {lab}</title>
         <link rel='icon' href=''/>
       </Head>
-      <div className='header'>
-        <div className='table-title'>
+      <div className={styles.header}>
+        <div className={styles.table_title}>
           <span>Attendance System</span>
-          <div className='underline'></div>
+          <div className={styles.underline}></div>
         </div>
       </div>
-      <div className='attendance-table-container'>
-        <table className='attendance-table'>
+      <div className={styles.attendance_table_container}>
+        <table className={styles.attendance_table}>
           <thead>
           {/*────────── draw a headr row like MEMBER, HOME, OUT, FUN, ... ──────────*/}
             <tr>
               <th>MEM.</th>
-              {locations.map(location => <th className='location'><span>{location}</span></th>)}
+              {locations.map(location => <th className={styles.location}><span>{location}</span></th>)}
             </tr>
           </thead>
           {/*────────── draw table cells of each member and each location ──────────*/}
           {members.map(member => {
             return (
-              <tr className='members-row'>
-                <th className='member-name'>
+              <tr className={styles.members_row}>
+                <th className={styles.member_name}>
                   <span>{member}</span>
                 </th>
                 {locations.map(location => {
                   return (
                     location === membersLocation[member] ?  // display member's icon at the current location, otherwise buttons which emits a 'onMoved' event when touched or clicked
-                      <td className='image-cell'>
-                        <img className='member-avatar' src={portraits[member]}/>
+                      <td className={styles.image_cell}>
+                        <img className={styles.member_avatar} src={portraits[member]}/>
                       </td> :
-                      <td className='button-cell'>
-                        <button className='attendance-table-button' type='button' onClick={() => {socket.emit('memberMoved', member, location)}}></button>
+                      <td className={styles.button_cell}>
+                        <button className={styles.attendance_table_button} type='button' onClick={() => {socket.emit('memberMoved', member, location)}}></button>
                       </td>
                   )
                 })}
@@ -70,7 +70,6 @@ export default function Attendance(props) {
             )
           })}
         </table>
-        {/* <style jsx>{styles}</style> */}
       </div>
     </>
   )

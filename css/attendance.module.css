@@ -1,7 +1,7 @@
 .header {
   margin: 40px 0 16px;
 }
-.header .table-title {
+.header .table_title {
   padding-left: 4px;
   font-size: 2.5rem;
 }
@@ -12,23 +12,23 @@
   border-bottom: 1px solid black;
 }
   
-.attendance-table {
+.attendance_table {
   margin: 0 auto 0 auto;
   text-align: center;
   font-size: 1.1rem;
   border-collapse: collapse;
 }
 
-.attendance-table thead th {
+.attendance_table thead th {
   padding: 12px 0px 12px;
 }
   
-.attendance-table .members-row th, .attendance-table .members-row td {
+.attendance_table .members_row th, .attendance_table .members_row td {
   padding: 15px;
   border-top: 1px solid var(--secondary-color);
 }
 
-.attendance-table-button {
+.attendance_table_button {
   padding: 25px;
   border: none;
   border-radius: 8px;
@@ -37,7 +37,7 @@
                inset 2px 2px 4px #d0d0d0;
 }
 
-.member-avatar {
+.member_avatar {
   position: relative;
   top: 2px;
   width: 50px;
