@@ -1,3 +1,4 @@
+import '../assets/css/attendance.css'
 import '../assets/css/global.css'
 import '../assets/css/normalize.css'
 

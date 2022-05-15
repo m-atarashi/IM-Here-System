@@ -13,6 +13,6 @@
     "socket.io-client": "^4.5.0"
   },
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node app.js"
   }
 }
