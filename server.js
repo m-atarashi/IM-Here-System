@@ -13,6 +13,8 @@ const members = Object.keys(config.members)
 
 const memberLocations = {}
 members.forEach(member => memberLocations[member] = 'HOME')
+const membersInClass = {}
+members.forEach(member => membersInClass[member] = false)
 const workingTimeManagers = {}
 members.forEach(member => workingTimeManagers[member] = new WorkingTimeManager())
 
@@ -28,6 +30,7 @@ nextApp.prepare().then(
     io.on('connection', socket => {
       // send data to a new connected client
       socket.emit('updateMemberLocations', memberLocations)
+      socket.emit('updateMembersInClass', membersInClass)
       socket.emit('sendConfig', config)
       socket
         .on('memberMoved', (member, location) => {
@@ -36,6 +39,10 @@ nextApp.prepare().then(
           // update user's location
           memberLocations[member] = location
           io.emit('updateMemberLocations', memberLocations)
+        })
+        .on('classTurned', member => {
+          membersInClass[member] = !membersInClass[member]
+          io.emit('updateMembersInClass', membersInClass)
         })
     })
   },
