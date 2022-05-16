@@ -32,7 +32,7 @@ export default function Attendance(props) {
   return (
     <>
       <Head>
-        <title>Attendance System - {lab}</title>
+        <title>IM Here System - {lab}</title>
         <link rel='icon' href=''/>
       </Head>
       <div className={styles.header}>
