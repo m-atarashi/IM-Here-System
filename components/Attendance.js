@@ -37,7 +37,7 @@ export default function Attendance(props) {
       </Head>
       <div className={styles.header}>
         <div className={styles.table_title}>
-          <span>Attendance System</span>
+          <span>IM Here System</span>
           <div className={styles.underline}></div>
         </div>
       </div>
