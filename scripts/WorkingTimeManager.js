@@ -4,6 +4,7 @@ class WorkingTimeManager {
   constructor() {
     this.workingMinute = 0
     this.attendanceMinute = 0
+    this.lastMovedTime = undefined
   }
 
   getCurrentMinute() {
@@ -11,14 +12,17 @@ class WorkingTimeManager {
     return date.getDate()*24*60 + date.getHours()*60 + date.getMinutes() + date.getSeconds()/60
   }
 
-  update(currentLocation, prevLocation) {
-    if (prevLocation === 'HOME') {
-      this.workingMinute = 0
-      this.attendanceMinute = this.getCurrentMinute()
-    }
-    if (currentLocation === 'HOME') {
-      this.workingMinute += this.getCurrentMinute() - this.attendanceMinute
-    }
+  init() {
+    this.workingMinute = 0
+    this.attendanceMinute = this.getCurrentMinute()
+  }
+
+  setWorkingMinute() {
+    this.workingMinute = this.getCurrentMinute() - this.attendanceMinute
+  }
+
+  updateLastMovedTime() {
+    this.lastMovedTime = new Date()
   }
 }
 
