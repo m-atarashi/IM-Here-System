@@ -18,6 +18,8 @@ members.forEach(member => membersInClass[member] = false)
 const workingTimeManagers = {}
 members.forEach(member => workingTimeManagers[member] = new WorkingTimeManager())
 
+const getLocationSlackDisplayName = (location) => config.locations.filter(e => e[location])[0][location]
+
 const webhook = new IncomingWebhook(config.slackWebhookURL)
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -34,20 +36,35 @@ nextApp.prepare().then(
       socket.emit('sendConfig', config)
       socket
         .on('memberMoved', (member, location) => {
-          workingTimeManagers[member].update(location, memberLocations[member])
-          notifyLocation(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], config.locations.map(e => e[memberLocations[member]]).filter(e => e)[0], workingTimeManagers[member].workingMinute)
+          const prevLoc = memberLocations[member]
+          const workingTimeManager = workingTimeManagers[member]
+          
+          // come to school
+          if (prevLoc === 'HOME') workingTimeManager.init()
+          // go home
+          if (location === 'HOME') {
+            workingTimeManager.setWorkingMinute()
+            workingTimeManager.updateLastMovedTime()
+            // turn off class toggle
+            membersInClass[member] = false
+            io.emit('updateMembersInClass', membersInClass)
+          }
+
+          // notify to Slack
+          notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), workingTimeManager)
+          workingTimeManager.updateLastMovedTime()
+
           // update a member's location
           memberLocations[member] = location
           io.emit('updateMemberLocations', memberLocations)
-
-          // reset CLASS toggle if you go home
-          if (location === 'HOME') membersInClass[member] = false
-          io.emit('updateMembersInClass', membersInClass)
         })
         .on('classTurned', (member, location) => {
           // update a member is in class or not
           membersInClass[member] = !membersInClass[member]
-          notifyInClassTurned(webhook, member, config.locations.map(e => e[location]).filter(e => e)[0], membersInClass[member])
+          // notify to Slack
+          const currentLoc = getLocationSlackDisplayName(location)
+          notifyInClassTurned(webhook, member, currentLoc, membersInClass[member])
+          
           io.emit('updateMembersInClass', membersInClass)
         })
     })
