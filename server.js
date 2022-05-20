@@ -11,12 +11,9 @@ const WorkingTimeManager = require('./scripts/WorkingTimeManager')
 const config = require('js-yaml').load(require('fs').readFileSync('public/config.yml'))
 const members = Object.keys(config.members)
 
-const memberLocations = {}
-members.forEach(member => memberLocations[member] = 'HOME')
-const membersInClass = {}
-members.forEach(member => membersInClass[member] = false)
-const workingTimeManagers = {}
-members.forEach(member => workingTimeManagers[member] = new WorkingTimeManager())
+const memberLocations = members.reduce((tmp, member, _) => {tmp[member] = 'HOME'; return tmp}, {})
+const membersInClass = members.reduce((tmp, member, _) => {tmp[member] = false; return tmp}, {})
+const workingTimeManagers = members.reduce((tmp, member, _) => {tmp[member] = new WorkingTimeManager(); return tmp}, {})
 
 const getLocationSlackDisplayName = (location) => config.locations.filter(e => e[location])[0][location]
 
@@ -51,7 +48,7 @@ nextApp.prepare().then(
           }
 
           // notify to Slack
-          notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), workingTimeManager)
+          //notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), workingTimeManager)
           workingTimeManager.updateLastMovedTime()
 
           // update a member's location
@@ -63,7 +60,7 @@ nextApp.prepare().then(
           membersInClass[member] = !membersInClass[member]
           // notify to Slack
           const currentLoc = getLocationSlackDisplayName(location)
-          notifyInClassTurned(webhook, member, currentLoc, membersInClass[member])
+          //notifyInClassTurned(webhook, member, currentLoc, membersInClass[member])
           
           io.emit('updateMembersInClass', membersInClass)
         })
