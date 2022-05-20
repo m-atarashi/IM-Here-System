@@ -11,9 +11,9 @@ const WorkingTimeManager = require('./scripts/WorkingTimeManager')
 const config = require('js-yaml').load(require('fs').readFileSync('public/config.yml'))
 const members = Object.keys(config.members)
 
-const memberLocations = members.reduce((tmp, member, _) => {tmp[member] = 'HOME'; return tmp}, {})
-const membersInClass = members.reduce((tmp, member, _) => {tmp[member] = false; return tmp}, {})
-const workingTimeManagers = members.reduce((tmp, member, _) => {tmp[member] = new WorkingTimeManager(); return tmp}, {})
+const memberLocations = members.reduce((obj, member, _) => {obj[member] = 'HOME'; return obj}, {})
+const membersInClass = members.reduce((obj, member, _) => {obj[member] = false; return obj}, {})
+const workingTimeManagers = members.reduce((obj, member, _) => {obj[member] = new WorkingTimeManager(); return obj}, {})
 
 const getLocationSlackDisplayName = (location) => config.locations.filter(e => e[location])[0][location]
 
