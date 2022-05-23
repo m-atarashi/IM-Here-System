@@ -34,6 +34,8 @@ export default function Attendance(props) {
       <Head>
         <title>IM Here System - {lab}</title>
         <link rel='icon' href=''/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
       </Head>
       <div className={styles.header}>
         <div className={styles.table_title}>
