@@ -48,7 +48,7 @@ nextApp.prepare().then(
           }
 
           // notify to Slack
-          //notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), workingTimeManager)
+          notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), workingTimeManager)
           workingTimeManager.updateLastMovedTime()
 
           // update a member's location
@@ -60,7 +60,7 @@ nextApp.prepare().then(
           membersInClass[member] = !membersInClass[member]
           // notify to Slack
           const currentLoc = getLocationSlackDisplayName(location)
-          //notifyInClassTurned(webhook, member, currentLoc, membersInClass[member])
+          notifyInClassTurned(webhook, member, currentLoc, membersInClass[member])
           
           io.emit('updateMembersInClass', membersInClass)
         })
