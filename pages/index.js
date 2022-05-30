@@ -1,5 +1,5 @@
-import Attendance from '../components/Attendance'
+import TableView from '../components/TableView'
 
 export default function Index() {
-  return <Attendance />
+  return <TableView />
 }
