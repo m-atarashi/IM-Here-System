@@ -7,7 +7,7 @@ import styles from '../css/table_view.module.css'
 import Header from './Header'
 import Table from './Table'
 
-export default function Attendance(props) {
+export default function TableView(props) {
   const [socket, setSocket] = useState()
   const [membersLocation, setmMembersLocation] = useState([])
   const [membersInClass, setMembersInClass] = useState({})
