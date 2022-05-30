@@ -5,7 +5,7 @@ const next = require('next')
 const Server = require('socket.io')
 const { IncomingWebhook } = require('@slack/webhook');
 const { notifyLocation, notifyInClassTurned } = require('./scripts/slackNotification')
-const WorkingTimeManager = require('./scripts/WorkingTimeManager')
+const StayTimeManager = require('./scripts/StayTimeManager')
 
 
 const config = require('js-yaml').load(require('fs').readFileSync('public/config.yml'))
@@ -13,7 +13,7 @@ const members = Object.keys(config.members)
 
 const memberLocations = members.reduce((obj, member, _) => {obj[member] = 'HOME'; return obj}, {})
 const membersInClass = members.reduce((obj, member, _) => {obj[member] = false; return obj}, {})
-const workingTimeManagers = members.reduce((obj, member, _) => {obj[member] = new WorkingTimeManager(); return obj}, {})
+const stayTimeManagers = members.reduce((obj, member, _) => {obj[member] = new StayTimeManager(); return obj}, {})
 
 const getLocationSlackDisplayName = (location) => config.locations.filter(e => e[location])[0][location]
 
@@ -34,22 +34,22 @@ nextApp.prepare().then(
       socket
         .on('memberMoved', (member, location) => {
           const prevLoc = memberLocations[member]
-          const workingTimeManager = workingTimeManagers[member]
+          const stayTimeManager = stayTimeManagers[member]
           
           // come to school
-          if (prevLoc === 'HOME') workingTimeManager.init()
+          if (prevLoc === 'HOME') stayTimeManager.init()
           // go home
           if (location === 'HOME') {
-            workingTimeManager.setWorkingMinute()
-            workingTimeManager.updateLastMovedTime()
+            stayTimeManager.setStayMinute()
+            stayTimeManager.updateLastMovedTime()
             // turn off class toggle
             membersInClass[member] = false
             io.emit('updateMembersInClass', membersInClass)
           }
 
           // notify to Slack
-          notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), workingTimeManager)
-          workingTimeManager.updateLastMovedTime()
+          notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), stayTimeManager)
+          stayTimeManager.updateLastMovedTime()
 
           // update a member's location
           memberLocations[member] = location
