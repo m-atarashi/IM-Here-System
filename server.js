@@ -16,7 +16,6 @@ const membersInClass = members.reduce((obj, member, _) => {obj[member] = false; 
 const stayTimeManagers = members.reduce((obj, member, _) => {obj[member] = new StayTimeManager(); return obj}, {})
 
 const getLocationSlackDisplayName = (location) => config.locations.filter(e => e[location])[0][location]
-
 const webhook = new IncomingWebhook(config.slackWebhookURL)
 
 const dev = process.env.NODE_ENV !== 'production'
