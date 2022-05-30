@@ -1,8 +1,8 @@
 'use strict'
 
-class WorkingTimeManager {
+class StayTimeManager {
   constructor() {
-    this.workingMinute = 0
+    this.stayMinute = 0
     this.attendanceMinute = 0
     this.lastMovedTime = undefined
   }
@@ -13,12 +13,12 @@ class WorkingTimeManager {
   }
 
   init() {
-    this.workingMinute = 0
+    this.stayMinute = 0
     this.attendanceMinute = this.getCurrentMinute()
   }
 
-  setWorkingMinute() {
-    this.workingMinute = this.getCurrentMinute() - this.attendanceMinute
+  setStayMinute() {
+    this.stayMinute = this.getCurrentMinute() - this.attendanceMinute
   }
 
   updateLastMovedTime() {
@@ -26,4 +26,4 @@ class WorkingTimeManager {
   }
 }
 
-module.exports = WorkingTimeManager
+module.exports = StayTimeManager
