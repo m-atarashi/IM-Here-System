@@ -30,11 +30,13 @@ nextApp.prepare().then(
       socket.emit('updateMemberLocations', memberLocations)
       socket.emit('updateMembersInClass', membersInClass)
       socket.emit('sendConfig', config)
+      
       socket
         .on('memberMoved', (member, location) => {
           const prevLoc = memberLocations[member]
           const stayTimeManager = stayTimeManagers[member]
           
+          if (prevLoc === location) return
           // come to school
           if (prevLoc === 'HOME') stayTimeManager.init()
           // go home
@@ -43,24 +45,25 @@ nextApp.prepare().then(
             stayTimeManager.updateLastMovedTime()
             // turn off class toggle
             membersInClass[member] = false
+
             io.emit('updateMembersInClass', membersInClass)
           }
 
           // notify to Slack
           notifyLocation(webhook, member, getLocationSlackDisplayName(prevLoc), getLocationSlackDisplayName(location), stayTimeManager)
+          // update stay time
           stayTimeManager.updateLastMovedTime()
-
           // update a member's location
           memberLocations[member] = location
+
           io.emit('updateMemberLocations', memberLocations)
         })
         .on('classTurned', (member, location) => {
-          // update a member is in class or not
+          // update whether the member is in class or not
           membersInClass[member] = !membersInClass[member]
           // notify to Slack
-          const currentLoc = getLocationSlackDisplayName(location)
-          notifyInClassTurned(webhook, member, currentLoc, membersInClass[member])
-          
+          notifyInClassTurned(webhook, member, getLocationSlackDisplayName(location), membersInClass[member])
+
           io.emit('updateMembersInClass', membersInClass)
         })
     })
