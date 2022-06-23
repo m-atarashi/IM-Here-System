@@ -3,21 +3,49 @@
   margin: 40px 0 16px;
 }
 .header .table_title {
-  padding-left: 8px;
+  font-family: var(--font-familly-title);
   font-size: 2.5rem;
+  padding-left: 8px;
 }
 
-.header .underline{
+.header .underline {
   position: relative;
   bottom: 14px;
-  border-bottom: 1px solid black;
+  border-bottom: 1.5px solid black;
+}
+
+.header .message_container {
+  font-family: var(--font-familly-dot);
+  font-size: 1.2rem;
+  width: 100%;
+  margin-bottom: 18px;
+  text-align:center;
+  white-space:nowrap;
+}
+
+.header .message_container .message {
+  display: inline-block;
+  white-space:nowrap;
+}
+.header .message_container .message.scroll {
+  padding-left: 15%;
+  animation: scroll-message 10s linear infinite;
+}
+
+@keyframes scroll-message {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* ────────────────── main table ────────────────── */
 .attendance_table {
+  font-size: 1.1rem;
   margin: 0 auto 0 auto;
   text-align: center;
-  font-size: 1.1rem;
   border-collapse: collapse;
 }
 
@@ -26,7 +54,7 @@
 }
   
 .attendance_table .members_row th, .attendance_table .members_row td {
-  padding: 15px;
+  padding: 13px;
   border-top: 1px solid var(--secondary-color);
 }
 
