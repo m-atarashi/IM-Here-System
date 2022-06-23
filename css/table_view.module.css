@@ -29,6 +29,7 @@
 .header .message_container .message {
   display: inline-block;
   white-space:nowrap;
+  margin-bottom: 20px;
 }
 .header .message_container .message.scroll {
   padding-left: 15%;
