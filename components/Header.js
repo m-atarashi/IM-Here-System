@@ -1,13 +1,13 @@
 'use strict'
 import styles from '../css/table_view.module.css'
+import Message from './Message'
+import Title from './Title'
 
 export default function Header(props) {
   return (
     <header className={styles.header}>
-      <div className={styles.table_title}>
-        <span>IM Here System</span>
-        <div className={styles.underline}></div>
-      </div>
+      <Message {...props}/>
+      <Title {...props}/>
     </header>
   )
 }
