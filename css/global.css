@@ -1,16 +1,31 @@
 /* sans-serif */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+/* JP */
 @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
 
 /* serif */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300&display=swap'); */
+/* JP */
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap');
+
+/* dot style */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* JP */
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+/* handwritting */
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
 
 :root {
   --primary-color: #f7f7f7;
   --secondary-color: #d0d0d0;
-  --font-familly-sans-serif: Comfortaa, 'Zen Maru Gothic', sans-serif;
+  --font-familly-sans-serif: 'Comfortaa', 'Zen Maru Gothic', sans-serif;
   --font-familly-sans: 'Josefin Slab', 'Kaisei Opti', serif;
+  --font-familly-handwritting: 'Nothing You Could Do', cursive;
+  --font-familly-dot: 'Press Start 2P', 'DotGothic16', cursive;
+  --font-familly-title: 'Josefin Slab', 'Kaisei Opti', serif;
 }
 
 html::-webkit-scrollbar {
