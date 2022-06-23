@@ -15,6 +15,8 @@ export default function TableView(props) {
   const [members, setMembers] = useState([])
   const [locations, setLocations] = useState([])
   const [portraits, setPortraits] = useState({})
+  const [message, setMessage] = useState()
+  const [isScroll, setisScroll] = useState()
   
   useEffect(() => {
     const socket = io()
@@ -26,6 +28,8 @@ export default function TableView(props) {
         setMembers(Object.keys(config.members))
         setLocations(config.locations.map(e => Object.keys(e)[0]))
         setPortraits(config.members)
+        setMessage(config.message)
+        setisScroll(config.isScroll)
       })
     setSocket(socket)
     return () => socket.close() // close this socket when component cleanuped
@@ -36,7 +40,7 @@ export default function TableView(props) {
       <Head>
         <title>IM Here System - {lab}</title>
       </Head>
-      <Header />
+      <Header message={message} isScroll={isScroll}/>
       <div className={styles.attendance_table_container}>
         <Table socket={socket} members={members} locations={locations} portraits={portraits} membersLocation={membersLocation} membersInClass={membersInClass}/>
       </div>
