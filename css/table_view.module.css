@@ -14,8 +14,8 @@
 
 .header .underline {
   position: relative;
-  bottom: 14px;
-  border-bottom: 1.5px solid black;
+  bottom: 13px;
+  border-bottom: 1px solid black;
 }
 
 .header .message_container {
