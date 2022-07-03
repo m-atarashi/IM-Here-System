@@ -2,23 +2,18 @@
 
 class StayTimeManager {
   constructor() {
-    this.stayMinute = 0
-    this.attendanceMinute = 0
+    this.stayTimeMillisec = 0
+    this.attendanceTimeMillisec = 0
     this.lastMovedTime = undefined
   }
 
-  getCurrentMinute() {
-    const date = new Date()
-    return date.getDate()*24*60 + date.getHours()*60 + date.getMinutes() + date.getSeconds()/60
-  }
-
   init() {
-    this.stayMinute = 0
-    this.attendanceMinute = this.getCurrentMinute()
+    this.stayTimeMillisec = 0
+    this.attendanceTimeMillisec = Date.now()
   }
 
   setStayMinute() {
-    this.stayMinute = this.getCurrentMinute() - this.attendanceMinute
+    this.stayTimeMillisec = Date.now() - this.attendanceTimeMillisec
   }
 
   updateLastMovedTime() {
