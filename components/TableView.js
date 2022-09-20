@@ -42,7 +42,7 @@ export default function TableView(props) {
       </Head>
       <Header message={message} isScroll={isScroll}/>
       <div className={styles.attendance_table_container}>
-        <Table socket={socket} members={members} locations={locations} portraits={portraits} membersLocation={membersLocation} membersInClass={membersInClass}/>
+        <Table socket={socket} members={members} locations={locations} portraits={portraits} membersLocation={membersLocation} membersInClass={membersInClass} message={message}/>
       </div>
     </>
   )
