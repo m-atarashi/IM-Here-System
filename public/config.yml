@@ -1,0 +1,34 @@
+lab: Sample
+
+# HTML display name : user icon url
+members:
+  Danny: /img/portraits/danny.png
+  Frank: /img/portraits/frank.png
+  Rusty: /img/portraits/rusty.png
+  Reuben: /img/portraits/reuben.png
+  Virgil: /img/portraits/virgil.png
+  Turk: /img/portraits/turk.png
+  Livingston: /img/portraits/livingston.png
+  Basher: /img/portraits/basher.png
+  Yen: /img/portraits/yen.png
+  Saul: /img/portraits/saul.png
+  Linus: /img/portraits/linus.png
+  Benedict: /img/portraits/benedict.png
+  Tess: /img/portraits/tess.png
+
+# HTML display name : Slack diplay name
+locations:
+  - HOME: 自宅
+  - HOTEL: ホテル
+  - OFFICE: オフィス
+  - PRISON: 刑務所
+  - CASINO: カジノ
+  - L.A.: ロサンゼルス
+  - Paris: パリ
+  - Roma: ローマ
+  - OUT: 外出中
+  - CLASS: 授業中
+
+# header scroll message
+message: ""
+isScroll: true
