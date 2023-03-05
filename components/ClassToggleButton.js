@@ -7,7 +7,7 @@ export default function TableClassToggleButton(props) {
       <input
         id={"class_toggle_" + props.member}
         className={styles.toggle_button}
-        defaultChecked={props.membersInClass[props.member]}
+        checked={props.membersInClass[props.member]}
         type="checkbox"
       />
       <label
