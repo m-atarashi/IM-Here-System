@@ -1,3 +1,15 @@
+# 研究室内入退室管理システム
+
+大学の所属研究室で利用している入退室管理システムです。Ubuntu をインストールした Raspberry Pi 上で稼働しています。
+
+開発期間：2022/5/1~2022/5/16
+<br>
+言語：JavaScript (Node.js)
+<br>
+フレームワーク：React / Next.js
+
+<br>
+
 # Node.js & Next.js implementation
 
 ## Usage
@@ -13,7 +25,7 @@ npm install -g pm2
 pm2 start server.js
 ```
 
-Then please access to http://192.168.1.94:3000.
+Then available at http://192.168.1.94:3000.
 
 ## Environments
 
