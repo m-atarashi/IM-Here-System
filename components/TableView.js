@@ -9,11 +9,15 @@ import Table from "./Table";
 
 export default function TableView(props) {
   const [socket, setSocket] = useState();
-  const [membersLocation, setmMembersLocation] = useState(Object.assign(...props.members));
-  const [membersInClass, setMembersInClass] = useState(Object.assign(...props.members));
-  Object.keys(membersLocation).forEach((key) => (membersLocation[key] = "HOME"));
-  Object.keys(membersInClass).forEach((key) => (membersInClass[key] = false));
-
+  const [membersLocation, setmMembersLocation] = useState(props.members.reduce((obj, member, _) => {
+    obj[Object.keys(member)[0]] = "HOME";
+    return obj;
+  }, {}));
+  const [membersInClass, setMembersInClass] = useState(props.members.reduce((obj, member, _) => {
+    obj[Object.keys(member)[0]] = false;
+    return obj;
+  }, {}));
+  
   useEffect(() => {
     const socket = io();
     socket
