@@ -81,7 +81,7 @@ jobs:
         with:
           path: ./out
       - name: Yarn Start
-        run: ${{ steps.detect-package-manager.outputs.runner }} yarn start
+        run: ${{ steps.detect-package-manager.outputs.runner }} start
 
   # Deployment job
   deploy:
