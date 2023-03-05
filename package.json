@@ -13,6 +13,7 @@
     "socket.io-client": "^4.5.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "next build && next export"
   }
 }
