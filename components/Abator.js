@@ -8,7 +8,7 @@ export default function Abator(props) {
       <div className={styles.member_avatar}>
         <Image
           className={styles.member_avatar}
-          src={props.portraits[props.member]}
+          src={props.src}
           layout="fill"
           objectFit="cover"
         />
