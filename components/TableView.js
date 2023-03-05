@@ -24,7 +24,6 @@ export default function TableView(props) {
       .on("updateMembersInClass", (membersInClass) =>
         setMembersInClass(membersInClass)
       )
-      .on("sendConfig", );
     setSocket(socket);
     return () => socket.close(); // close this socket when component cleanuped
   }, []);
