@@ -8,13 +8,12 @@ import Header from "./Header";
 import Table from "./Table";
 
 export default function TableView(props) {
-  const tmp = Object.assign(...props.members);
-  Object.keys(tmp).forEach((key) => (tmp[key] = "HOME"));
-  const [membersLocation, setmMembersLocation] = useState(tmp);
-  Object.keys(tmp).forEach((key) => (tmp[key] = false));
-  const [membersInClass, setMembersInClass] = useState(tmp);
-
   const [socket, setSocket] = useState();
+  const [membersLocation, setmMembersLocation] = useState(Object.assign(...props.members));
+  const [membersInClass, setMembersInClass] = useState(Object.assign(...props.members));
+  Object.keys(membersLocation).forEach((key) => (membersLocation[key] = "HOME"));
+  Object.keys(membersInClass).forEach((key) => (membersInClass[key] = false));
+
   useEffect(() => {
     const socket = io();
     socket
