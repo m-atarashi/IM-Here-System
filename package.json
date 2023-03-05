@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@slack/webhook": "^6.1.0",
+    "fs.promises": "^0.1.2",
     "js-yaml": "^4.1.0",
     "next": "^12.1.6",
     "react": "^18.1.0",
