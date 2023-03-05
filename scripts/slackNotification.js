@@ -7,7 +7,7 @@ const gohomeMessage = (member, stayTimeMillisec) => {
     (stayTimeMillisec / 60000) % 60,
   ].map(Math.floor);
   return (
-    (member === "Sumi" ? "今日の勤務時間は" : "今日の学内滞在時間は") +
+    "今日の学内滞在時間は" +
     (hour > 0 ? `${hour}時間` : "") +
     `${minute}分でした。`
   );
