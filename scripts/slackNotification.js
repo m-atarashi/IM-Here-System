@@ -1,7 +1,7 @@
 "use strict";
 
 // 帰宅時メッセージを返します。なお、滞在時間が１時間未満の場合、時は表示せず分のみ表示します
-const gohomeMessage = (member, stayTimeMillisec) => {
+const gohomeMessage = (stayTimeMillisec) => {
   const [hour, minute] = [
     stayTimeMillisec / 3600000,
     (stayTimeMillisec / 60000) % 60,
@@ -41,6 +41,7 @@ async function notifyLocation(
   currentLoc,
   StayTimeManager
 ) {
+  if (typeof webhook === "undefined") return;
   const message = movedMessage(member, prevLoc, currentLoc, StayTimeManager);
 
   await webhook.send({
@@ -50,6 +51,7 @@ async function notifyLocation(
 
 // 授業参加・退出時にSlackにメッセージを送ります
 async function notifyInClassTurned(webhook, member, location, isClass) {
+  if (typeof webhook === "undefined") return;
   const message =
     member +
     (isClass ? "さんが講義に参加しました : " : "さん講義お疲れさまでした : ") +
