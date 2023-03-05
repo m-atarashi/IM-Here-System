@@ -32,3 +32,5 @@ locations:
 # header scroll message
 message: ""
 isScroll: true
+
+slackWebhookURL: ""
